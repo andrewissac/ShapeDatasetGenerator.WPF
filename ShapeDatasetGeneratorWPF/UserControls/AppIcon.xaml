@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="ShapeDatasetGeneratorWPF.UserControls.AppIcon"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ShapeDatasetGeneratorWPF.UserControls"
+             mc:Ignorable="d" 
+             x:Name="root"
+             d:DesignHeight="400" d:DesignWidth="400">
+    <Grid>
+        <Viewbox RenderTransformOrigin="0.5 0.5">
+            <Viewbox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="-1"/>
+                    <RotateTransform Angle="180"/>
+                </TransformGroup>
+            </Viewbox.RenderTransform>
+            <Grid>
+                <Path Fill="#FFee4d2e" Data="M701 7989 c-330 -43 -586 -271 -673 -599 l-23 -85 0 -3305 0 -3305 23 -85 c92 -348 363 -573 727 -605 l81 -7 358 841 358 842 -48 55 c-334 386 -538 729 -688 1164 -127 364 -181 692 -181 1100 0 407 49 708 176 1084 300 888 968 1619 1833 2000 305 135 643 225 1001 268 143 17 567 17 710 0 793 -94 1475 -421 2026 -971 550 -551 877 -1233 971 -2026 17 -143 17 -567 0 -710 -88 -739 -369 -1364 -864 -1916 l-68 -77 352 -827 353 -828 98 7 c378 26 654 250 749 606 l23 85 0 3305 0 3305 -23 85 c-78 294 -280 498 -577 582 l-80 23 -3275 1 c-1801 1 -3304 -2 -3339 -7z"/>
+                <Path Fill="#FFee4d2e" Data="M2768 4517 l-1208 -2832 110 -107 c445 -433 1034 -745 1640 -868 274 -56 369 -64 690 -64 321 0 416 8 690 64 596 121 1180 427 1624 852 l98 93 -1214 2847 c-667 1567 -1215 2848 -1218 2848 -3 0 -548 -1275 -1212 -2833z"/>
+            </Grid>
+        </Viewbox>
+    </Grid>
+</UserControl>

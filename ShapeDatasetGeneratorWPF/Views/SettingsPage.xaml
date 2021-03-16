@@ -1,0 +1,429 @@
+﻿<views:PageBase x:Class="ShapeDatasetGeneratorWPF.Views.SettingsPage"
+      xmlns:views="clr-namespace:ShapeDatasetGeneratorWPF.Views"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+      xmlns:customctrl="clr-namespace:ShapeDatasetGeneratorWPF.CustomControls"
+      xmlns:lex="http://wpflocalizeextension.codeplex.com"
+      lex:LocalizeDictionary.DesignCulture="en-US"
+      lex:ResxLocalizationProvider.DefaultAssembly="ShapeDatasetGeneratorWPF"
+      lex:ResxLocalizationProvider.DefaultDictionary="Localization"
+      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+      xmlns:local="clr-namespace:ShapeDatasetGeneratorWPF.Views"
+      xmlns:helper="clr-namespace:ShapeDatasetGeneratorWPF.Helper"
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:usrctrl="clr-namespace:ShapeDatasetGeneratorWPF.UserControls"
+      Background="{DynamicResource pr0.RichtigesGrau}"
+      DataContext="{Binding SettingsPageViewModel, Source={StaticResource ViewModelLocator}}"
+      mc:Ignorable="d" 
+       d:DesignWidth="500"
+      Title="SettingsPage">
+    <views:PageBase.Resources>
+        <helper:BindingProxy x:Key="Proxy" Data="{Binding}" />
+        <ResourceDictionary x:Key="MaterialDesignButtonResource" Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+    </views:PageBase.Resources>
+
+    <ScrollViewer x:Name="ScrollViewer" Grid.Row="0" Margin="10,0,4,0"
+                    Style="{DynamicResource ScrollViewer.Default}">
+        <ScrollViewer.OpacityMask>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                <GradientStop Color="Transparent" Offset="0" />
+                <GradientStop Color="#FF000000" Offset="0.05" />
+                <GradientStop Color="#FF000000" Offset="0.9" />
+                <GradientStop Color="Transparent" Offset="1" />
+            </LinearGradientBrush>
+        </ScrollViewer.OpacityMask>
+        <StackPanel Margin="10,10,15,10">
+            <Grid Height="25"/>
+            <Expander Style="{DynamicResource MD.Expander.pr0}" 
+                      Header="{lex:Loc Output}">
+                <StackPanel Margin="10">
+                    <Grid Margin="0,0,0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="270"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <xctk:WatermarkTextBox x:Name="TextBoxOutputPath" 
+                                            Grid.Column="0"
+                                            Height="30"
+                                            HorizontalAlignment="Stretch"
+                                            Style="{DynamicResource WatermarkTextBox.pr0}"
+                                            Text="{Binding UserSettings.RootOutputPath}">
+                            <xctk:WatermarkTextBox.Watermark>
+                                <TextBlock Text="{lex:Loc Watermark_ChooseFolder}" 
+                                       Margin="0,0,0,0" 
+                                       Foreground="{DynamicResource TextBox.pr0.WaterMarkColor}"
+                                       TextWrapping="NoWrap"
+                                       TextTrimming="CharacterEllipsis"
+                                       Style="{DynamicResource TextBlock.pr0}" />
+                            </xctk:WatermarkTextBox.Watermark>
+                        </xctk:WatermarkTextBox>
+                        <Button x:Name="ButtonOpenFolderDialog" 
+                                Grid.Column="2" 
+                                Style="{DynamicResource MD.Button.pr0}"
+                                ToolTip="{lex:Loc OutputFolder}"
+                                Command="{Binding OpenFolderDialogCommand}">
+                            <Button.Content>
+                                <!-- https://icons.getbootstrap.com/icons/folder2-open/-->
+                                <Path Fill="{Binding Foreground, ElementName=ButtonOpenFolderDialog}"
+                                    Data="M16.5,12C19,12 21,14 21,16.5C21,17.38 20.75,18.21 20.31,18.9L23.39,22L22,23.39L18.88,20.32C18.19,20.75 17.37,21 16.5,21C14,21 12,19 12,16.5C12,14 14,12 16.5,12M16.5,14A2.5,2.5 0 0,0 14,16.5A2.5,2.5 0 0,0 16.5,19A2.5,2.5 0 0,0 19,16.5A2.5,2.5 0 0,0 16.5,14M19,8H3V18H10.17C10.34,18.72 10.63,19.39 11,20H3C1.89,20 1,19.1 1,18V6C1,4.89 1.89,4 3,4H9L11,6H19A2,2 0 0,1 21,8V11.81C20.42,11.26 19.75,10.81 19,10.5V8Z" >
+                                </Path>
+                            </Button.Content>
+                        </Button>
+                    </Grid>
+
+                    <xctk:WatermarkTextBox x:Name="TextBoxShapeName"
+                                        Height="30"
+                                        Width="270"
+                                        HorizontalAlignment="Left"
+                                        Margin="0,0,0,10"
+                                        ToolTip="{lex:Loc Watermark_ShapeName}"
+                                        Style="{DynamicResource WatermarkTextBox.pr0}"
+                                        Text="{Binding UserSettings.ShapeName}">
+                        <xctk:WatermarkTextBox.Watermark>
+                            <TextBlock Text="{lex:Loc Watermark_ShapeName}" 
+                                    Margin="0,0,0,0" 
+                                    Foreground="{DynamicResource TextBox.pr0.WaterMarkColor}"
+                                    TextWrapping="NoWrap"
+                                    TextTrimming="CharacterEllipsis"
+                                    Style="{DynamicResource TextBlock.pr0}" />
+                        </xctk:WatermarkTextBox.Watermark>
+                    </xctk:WatermarkTextBox>
+
+                    <CheckBox Style="{DynamicResource MD.CheckBox.pr0}"
+                              Margin="0,0,0,10"
+                              Content="{lex:Loc CheckBox_ClearCanvasOnSave}"
+                              ToolTip="minimal area bounding boxes: mabb"
+                              IsChecked="{Binding UserSettings.ClearCanvasOnSave, Mode=TwoWay}"/>
+
+                    <CheckBox Style="{DynamicResource MD.CheckBox.pr0}"
+                              Margin="0,0,0,10"
+                              Content="{lex:Loc CheckBox_ExportBB}"
+                              ToolTip="bounding boxes: bb "
+                              IsChecked="{Binding UserSettings.ExportOriginalSizeBoundingBoxes, Mode=TwoWay}"/>
+
+                    <CheckBox Style="{DynamicResource MD.CheckBox.pr0}"
+                              Content="{lex:Loc CheckBox_ExportMABB}"
+                              ToolTip="minimal area bounding boxes: mabb"
+                              IsChecked="{Binding UserSettings.ExportOriginalSizeMinAreaBoundingBoxes, Mode=TwoWay}"/>
+                </StackPanel>
+            </Expander>
+
+            <Expander Style="{DynamicResource MD.Expander.pr0}" 
+                      Header="{lex:Loc ResizeOutput}">
+                <StackPanel Margin="10">
+                    <CheckBox Style="{DynamicResource MD.CheckBox.pr0}"
+                                  Margin="0,0,0,10"
+                                  Content="{lex:Loc CheckBox_ExportRBB}"
+                                  ToolTip="resized bounding boxes: rbb"
+                                  IsChecked="{Binding UserSettings.ExportBoundingBoxes, Mode=TwoWay}"/>
+
+
+                    <CheckBox Style="{DynamicResource MD.CheckBox.pr0}"
+                                  Margin="0,0,0,10"
+                                  Content="{lex:Loc CheckBox_ExportRMABB}"
+                                  ToolTip="resized minimal area bounding boxes: rmabb"
+                                  IsChecked="{Binding UserSettings.ExportMinAreaBoundingBoxes, Mode=TwoWay}"/>
+
+                    <Grid Margin="0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Margin="0,0,10,0" 
+                                       Grid.Column="0"
+                                       Style="{DynamicResource TextBlock.pr0.Grau}">
+                                <Run Text="{lex:Loc ResizeOutput}"/>
+                                <Run Text=" (w x h):"/>
+                        </TextBlock>
+
+                        <customctrl:IntTextBox HorizontalContentAlignment="Center"
+                                                    Grid.Column="1"
+                                                    Style="{DynamicResource TextBox.pr0}"
+                                                    Width="56"
+                                                    Text="{Binding OutputImgWidth}"/>
+
+                        <TextBlock Margin="5,0" 
+                                       Grid.Column="2" 
+                                       Style="{DynamicResource TextBlock.pr0.Grau}"
+                                       Text="x"/>
+
+                        <customctrl:IntTextBox HorizontalContentAlignment="Center"
+                                                    Grid.Column="3"
+                                                    Style="{DynamicResource TextBox.pr0}"
+                                                    Width="56"
+                                                    Text="{Binding OutputImgHeight}"/>
+
+                        <Button x:Name="AddOutputImgDimButton"
+                                Command="{Binding AddOutputImgDimensionCommand}" 
+                                Grid.Column="4"
+                                Style="{DynamicResource MD.Button.pr0}"
+                                Margin="10,0,0,0">
+                            <Button.Content>
+                                <Grid>
+                                    <!-- boxicons.com -->
+                                    <Path Fill="{Binding Path=Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Button}}}" Data="M4 5h13v7h2V5c0-1.103-0.897-2-2-2H4C2.897 3 2 3.897 2 5v12c0 1.103 0.897 2 2 2h8v-2H4V5z"/>
+                                    <Path Fill="{Binding Path=Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Button}}}" Data="M8 11L5 15 16 15 12 9 9 13z"/>
+                                    <Path Fill="{Binding Path=Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Button}}}" Data="M19 14L17 14 17 17 14 17 14 19 17 19 17 22 19 22 19 19 22 19 22 17 19 17z"/>
+                                </Grid>
+                            </Button.Content>
+                        </Button>
+                    </Grid>
+
+                    <ListView ItemsSource="{Binding UserSettings.OutputImgDimensions}" 
+                                  Margin="0,0,0,10"
+                                  ItemContainerStyle="{DynamicResource ListViewItemContainerStyle.Default}"
+                                  SelectedItem="{Binding SelectedOutputImgDimension}" 
+                                  Background="{DynamicResource pr0.RichtigesGrau}"
+                                  BorderBrush="{DynamicResource pr0.Gebannt}"
+                                  SelectionMode="Single">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" Margin="0,4">
+                                    <TextBlock Text="{Binding Width}" Margin="10,0" Style="{DynamicResource TextBlock.pr0}" />
+                                    <TextBlock Text="x" Style="{DynamicResource TextBlock.pr0.Grau}"/>
+                                    <TextBlock Text="{Binding Height}" Margin="10,0" Style="{DynamicResource TextBlock.pr0}"/>
+                                    <Button Command="{Binding Data.RemoveOutputImgDimensionCommand, Source={StaticResource Proxy}}">
+                                        <Button.Content>
+                                            <Viewbox Height="16" Width="16">
+                                                <Path x:Name="DeleteIcon" 
+                                                  Fill="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}" 
+                                                  Data="m 9.206 7.501 a 0.75 0.75 0 0 1 0.793 0.705 l 0.5 8.5 A 0.75079042 0.75079042 0 1 1 9 16.794 L 8.5 8.294 A 0.75 0.75 0 0 1 9.205 7.501 Z m 6.293 0.793 A 0.75079042 0.75079042 0 1 0 14 8.206 l -0.5 8.5 a 0.75029128 0.75029128 0 0 0 1.498 0.088 l 0.5 -8.5 z M 4.997 6.178 A 0.75 0.75 0 1 0 3.504 6.322 L 4.916 20.92 a 1.75 1.75 0 0 0 1.742 1.58 h 10.684 a 1.75 1.75 0 0 0 1.742 -1.581 L 20.497 6.322 A 0.75046186 0.75046186 0 0 0 19.003 6.178 L 17.591 20.774 A 0.25 0.25 0 0 1 17.342 21 H 6.658 A 0.25 0.25 0 0 1 6.409 20.774 Z M 16 1.75 V 3 h 5.25 a 0.75 0.75 0 0 1 0 1.5 H 2.75 A 0.75 0.75 0 0 1 2.75 3 H 8 V 1.75 C 8 0.784 8.784 0 9.75 0 h 4.5 C 15.216 0 16 0.784 16 1.75 Z m -6.5 0 A 0.25 0.25 0 0 1 9.75 1.5 h 4.5 A 0.25 0.25 0 0 1 14.5 1.75 V 3 h -5 z"/>
+                                            </Viewbox>
+                                        </Button.Content>
+                                        <Button.Style>
+                                            <Style TargetType="Button" BasedOn="{StaticResource Button.pr0.Icon}">
+                                                <Setter Property="Foreground" Value="{DynamicResource pr0.Grau}"/>
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="Foreground" Value="{DynamicResource pr0.BewaehrtesOrange}"/>
+                                                        <Setter Property="Cursor" Value="Hand"/>
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
+                                    </Button>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackPanel>
+            </Expander>
+
+            <Expander Style="{DynamicResource MD.Expander.pr0}" Header="{lex:Loc Performance}">
+                <StackPanel Margin="10">
+                    <Grid Margin="0,0,0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="60"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Style="{DynamicResource TextBlock.pr0.Grau}" 
+                                   Grid.Column="0"
+                                   Grid.Row="0"
+                                   HorizontalAlignment="Left" 
+                                   Text="{lex:Loc Framerate}"/>
+                        <TextBlock Style="{DynamicResource TextBlock.pr0}" 
+                                   Grid.Column="1" 
+                                   Grid.Row="0"
+                                   HorizontalAlignment="Right" 
+                                   Margin="0,0,10,0" 
+                                   Text="{Binding UserSettings.Framerate, Mode=OneWay, FallbackValue= 60}"/>
+                        <Slider x:Name="Slider_fps" 
+                                Style="{DynamicResource MD.Slider.pr0}"
+                                Grid.Column="2" 
+                                Grid.Row="0"
+                                VerticalAlignment="Center"
+                                Minimum="1" Maximum="144" 
+                                IsSnapToTickEnabled="True"
+                                TickFrequency="1"
+                                ToolTip="{lex:Loc ToolTip_Framerate}"
+                                Value="{Binding UserSettings.Framerate, Mode=TwoWay}"/>
+                    </Grid>
+                </StackPanel>
+
+            </Expander>
+
+            <Expander Style="{DynamicResource MD.Expander.pr0}" Header="{lex:Loc Colors}">
+                <Grid  Margin="10,5,10,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="180"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Style="{DynamicResource TextBlock.pr0.Grau}"
+                           Grid.Row="0"
+                           Grid.Column="0"
+                           Text="{lex:Loc StrokeColor}"/>
+                    <usrctrl:Colorpicker x:Name="ColorPicker_Stroke" 
+                                    Cursor="Hand"
+                                    Grid.Column="1"
+                                    SelectedColor="{Binding UserSettings.SelectedStrokeColor, Mode=TwoWay}"/>
+                    
+                    <TextBlock Style="{DynamicResource TextBlock.pr0.Grau}"
+                           Grid.Row="1"
+                           Grid.Column="0"
+                           Text="{lex:Loc BoundingBoxColor}"/>
+                    <usrctrl:Colorpicker x:Name="ColorPicker_BoundingBox" 
+                                    Cursor="Hand"
+                                    Grid.Column="1"
+                                    Grid.Row="1"
+                                    SelectedColor="{Binding UserSettings.SelectedBoundingBoxColor, Mode=TwoWay}"/>
+                    
+                    <TextBlock Style="{DynamicResource TextBlock.pr0.Grau}"
+                           Grid.Row="2"
+                           Grid.Column="0"
+                           Text="{lex:Loc MinimalAreaBoundingBoxColor}"/>
+                    <usrctrl:Colorpicker x:Name="ColorPicker_MinAreaBoundingBox"
+                                    Cursor="Hand"
+                                    Grid.Column="1"
+                                    Grid.Row="2"
+                                    SelectedColor="{Binding UserSettings.SelectedMinAreaBoundingBoxColor, Mode=TwoWay}"/>
+                    
+                    <TextBlock Style="{DynamicResource TextBlock.pr0.Grau}"
+                           Grid.Row="3"
+                           Grid.Column="0"
+                           Text="{lex:Loc BackgroundColor}"/>
+                    <usrctrl:Colorpicker x:Name="ColorPicker_BackgroundColor"
+                                    Cursor="Hand"
+                                    Grid.Column="1"
+                                    Grid.Row="3"
+                                    SelectedColor="{Binding UserSettings.BackgroundColor, Mode=TwoWay}"/>
+                </Grid>
+            </Expander>
+
+            <Expander Style="{DynamicResource MD.Expander.pr0}" Header="{lex:Loc Stroke}">
+                <StackPanel Margin="10">
+                    <CheckBox Style="{DynamicResource MD.CheckBox.pr0}"
+                                  FontWeight="Normal"
+                                  Margin="0,0,0,10"
+                                  Grid.Row="0"
+                                  Grid.ColumnSpan="3"
+                                  Content="{lex:Loc CheckBox_RandomizeStrokeThickness}"
+                                  IsChecked="{Binding UserSettings.RandomizeStrokeThickness, Mode=TwoWay}"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="60"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="32"/>
+                            <RowDefinition Height="32"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Style="{DynamicResource TextBlock.pr0.Grau}" 
+                                   Grid.Column="0" 
+                                   Grid.Row="0"
+                                   HorizontalAlignment="Left" 
+                                   Text="{lex:Loc StrokeThickness}"/>
+                        <TextBlock Style="{DynamicResource TextBlock.pr0}" 
+                                   Visibility="{Binding UserSettings.RandomizeStrokeThickness, Converter={StaticResource InvertBoolToCollapsedVisibilityConverter}}"
+                                   Grid.Column="1" 
+                                   Grid.Row="0"
+                                   HorizontalAlignment="Right" 
+                                   Margin="0,0,10,0" 
+                                   Text="{Binding UserSettings.StrokeThickness, Mode=OneWay, FallbackValue= 10}"/>
+                        <Slider x:Name="Slider_Strokethickness" 
+                                Style="{DynamicResource MD.Slider.pr0}"
+                                Visibility="{Binding UserSettings.RandomizeStrokeThickness, Converter={StaticResource InvertBoolToCollapsedVisibilityConverter}}"
+                                Grid.Column="2" 
+                                Grid.Row="0"
+                                VerticalAlignment="Center"
+                                Minimum="1" Maximum="20" 
+                                IsSnapToTickEnabled="True"
+                                TickFrequency="1"
+                                Value="{Binding UserSettings.StrokeThickness, Mode=TwoWay}"/>
+                        <Grid Grid.Column="1" Grid.Row="0"  HorizontalAlignment="Right" Visibility="{Binding UserSettings.RandomizeStrokeThickness, Converter={StaticResource BoolToCollapsedVisibilityConverter}}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="10"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Style="{DynamicResource TextBlock.pr0}" 
+                                   Grid.Column="0"
+                                   HorizontalAlignment="Right" 
+                                   Text="{Binding UserSettings.StrokeThicknessMin, Mode=OneWay, FallbackValue= 5}"/>
+                            <TextBlock Style="{DynamicResource TextBlock.pr0.Grau}" 
+                                   Grid.Column="1"
+                                   HorizontalAlignment="Center" 
+                                   Margin="5,0" 
+                                   Text="-"/>
+                            <TextBlock Style="{DynamicResource TextBlock.pr0}" 
+                                   Grid.Column="2"
+                                   HorizontalAlignment="Right" 
+                                   Text="{Binding UserSettings.StrokeThicknessMax, Mode=OneWay, FallbackValue= 10}"/>
+                        </Grid>
+                        <mah:RangeSlider x:Name="RangeSlider_Strokethickness" 
+                                        Visibility="{Binding UserSettings.RandomizeStrokeThickness, Converter={StaticResource BoolToCollapsedVisibilityConverter}}"
+                                        Width="{Binding Width, ElementName=Slider_Strokethickness}"
+                                         Margin="0"
+                                        Style="{DynamicResource MD.RangeSlider.pr0}"
+                                        Grid.Column="2" 
+                                        Grid.Row="0"
+                                        LowerValue="{Binding UserSettings.StrokeThicknessMin, Mode=TwoWay, FallbackValue= 5}"
+                                        UpperValue="{Binding UserSettings.StrokeThicknessMax, Mode=TwoWay, FallbackValue= 10}"
+                                        MinRangeWidth="1"
+                                        SmallChange="1"
+                                        LargeChange="5"
+                                        VerticalAlignment="Center"
+                                        Minimum="1" Maximum="20" 
+                                        IsSnapToTickEnabled="True"
+                                        TickFrequency="1"
+                                        Value="{Binding UserSettings.StrokeThickness, Mode=TwoWay}"/>
+
+                        <TextBlock Style="{DynamicResource TextBlock.pr0.Grau}" 
+                                   Grid.Column="0" 
+                                   Grid.Row="1"
+                                   HorizontalAlignment="Left" 
+                                   Text="{lex:Loc InterpolationStepSize}"/>
+                        <TextBlock Style="{DynamicResource TextBlock.pr0}" 
+                                   Grid.Column="1" 
+                                   Grid.Row="1"
+                                   HorizontalAlignment="Right" 
+                                   Margin="0,0,10,0" 
+                                   Text="{Binding UserSettings.InterpolationStepSize, Mode=OneWay, FallbackValue= 5}"/>
+                        <Slider x:Name="Slider_InterpolationStepSize" 
+                                Style="{DynamicResource MD.Slider.pr0}"
+                                Grid.Column="2" 
+                                Grid.Row="1"
+                                VerticalAlignment="Center"
+                                Minimum="1" Maximum="40" 
+                                IsSnapToTickEnabled="True"
+                                TickFrequency="1"
+                                Value="{Binding UserSettings.InterpolationStepSize, Mode=TwoWay}"/>
+                    </Grid>
+                </StackPanel>
+            </Expander>
+
+            <Expander Style="{DynamicResource MD.Expander.pr0}" Header="{lex:Loc BoundingBoxes}">
+                <StackPanel Margin="10">
+                    <CheckBox Style="{DynamicResource MD.CheckBox.pr0}"
+                          Margin="0,0,0,10"
+                          Content="{lex:Loc CheckBox_DrawBB}"
+                          ToolTip="bb: bounding boxes"
+                          IsChecked="{Binding UserSettings.DrawBoundingBoxes, Mode=TwoWay}"/>
+
+                    <CheckBox Style="{DynamicResource MD.CheckBox.pr0}"
+                          Content="{lex:Loc CheckBox_DrawMABB}"
+                          ToolTip="mabb: minimal area bounding boxes"
+                          IsChecked="{Binding UserSettings.DrawMinAreaBoundingBoxes, Mode=TwoWay}"/>
+                </StackPanel>
+            </Expander>
+            <Grid Height="50"/>
+
+        </StackPanel>
+    </ScrollViewer>
+</views:PageBase>

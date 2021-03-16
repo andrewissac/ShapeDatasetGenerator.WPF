@@ -1,0 +1,82 @@
+<Application x:Class="ShapeDatasetGeneratorWPF.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+             xmlns:local="clr-namespace:ShapeDatasetGeneratorWPF" 
+             Exit="Application_Shutdown"
+             xmlns:vm="clr-namespace:ShapeDatasetGeneratorWPF.ViewModel" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:converter="clr-namespace:ShapeDatasetGeneratorWPF.Converters"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             d1p1:Ignorable="d" 
+             xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006">
+  <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary>
+                    <vm:ViewModelLocator x:Key="ViewModelLocator" d:IsDataSource="True" />
+                </ResourceDictionary>
+
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Themes/Light.Blue.xaml" />
+
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Dark.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+
+                <ResourceDictionary>
+                    <SolidColorBrush x:Key="PrimaryHueLightBrush" Color="#FFfc8833"/>
+                    <SolidColorBrush x:Key="PrimaryHueLightForegroundBrush" Color="#FF444444"/>
+                    <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="#FFee4d2e"/>
+                    <SolidColorBrush x:Key="PrimaryHueMidForegroundBrush" Color="#FF444444"/>
+                    <SolidColorBrush x:Key="PrimaryHueDarkBrush" Color="#FFd23c22"/>
+                    <SolidColorBrush x:Key="PrimaryHueDarkForegroundBrush" Color="#FF444444"/>
+                    <!-- accent -->
+                    <SolidColorBrush x:Key="SecondaryHueLightBrush" Color="Green"/>
+                    <SolidColorBrush x:Key="SecondaryHueLightForegroundBrush" Color="#FF444444"/>
+                    <SolidColorBrush x:Key="SecondaryHueMidBrush" Color="#FF444444"/>
+                    <SolidColorBrush x:Key="SecondaryHueMidForegroundBrush" Color="#FF444444"/>
+                    <SolidColorBrush x:Key="SecondaryHueDarkBrush" Color="Purple"/>
+                    <SolidColorBrush x:Key="SecondaryHueDarkForegroundBrush" Color="#FF444444"/>
+                </ResourceDictionary>
+                
+
+
+                <ResourceDictionary Source="Styles/DefaultStyles.xaml" />
+                <ResourceDictionary Source="Styles/ErrorStyles.xaml" />
+                <ResourceDictionary Source="Styles/MaterialDesignBasedStyles.xaml"/>
+
+                <ResourceDictionary>
+                    <converter:InvertBoolConverter x:Key="InvertBoolConverter" />
+                </ResourceDictionary>
+                <ResourceDictionary>
+                    <converter:BoolToHiddenVisibilityConverter x:Key="BoolToHiddenVisibilityConverter" />
+                </ResourceDictionary>
+                <ResourceDictionary>
+                    <converter:InvertBoolToHiddenVisibilityConverter x:Key="InvertBoolToHiddenVisibilityConverter" />
+                </ResourceDictionary>
+                <ResourceDictionary>
+                    <converter:BoolToCollapsedVisibilityConverter x:Key="BoolToCollapsedVisibilityConverter" />
+                </ResourceDictionary>
+                <ResourceDictionary>
+                    <converter:InvertBoolToCollapsedVisibilityConverter x:Key="InvertBoolToCollapsedVisibilityConverter" />
+                </ResourceDictionary>
+                <ResourceDictionary>
+                    <converter:BoolToOpacityConverter x:Key="BoolToOpacityConverter" />
+                </ResourceDictionary>
+                <ResourceDictionary>
+                    <converter:StringIsEmptyToBoolConverter x:Key="StringIsEmptyToBoolConverter" />
+                </ResourceDictionary>
+                <ResourceDictionary>
+                    <converter:StringIsEmptyToBoolConverter x:Key="StringIsEmptyToBoolConverter" />
+                </ResourceDictionary>
+                <ResourceDictionary>
+                    <converter:ColorToSolidColorBrushConverter x:Key="ColorToSolidColorBrushConverter" />
+                </ResourceDictionary>
+                <ResourceDictionary>
+                    <converter:ExpanderRotateAngleConverter x:Key="ExpanderRotateAngleConverter"/>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

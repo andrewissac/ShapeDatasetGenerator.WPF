@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="ShapeDatasetGeneratorWPF.UserControls.Colorpicker"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             x:Name="uctrl"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:ShapeDatasetGeneratorWPF.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <xctk:ColorPicker   
+                x:Name="colorPicker"
+                ColorMode="ColorPalette" 
+                FontFamily="Helvectica"
+                FontWeight="Normal"
+                FontSize="12"
+                Foreground="#FFf2f5f4"
+                Height="30"
+                Background="Transparent"
+                ShowRecentColors="True" 
+                ShowStandardColors="True" 
+                ShowAvailableColors="False"
+                ShowDropDownButton="False"
+                BorderThickness="0"
+                DropDownBorderBrush="Transparent"
+                DropDownBorderThickness="0,0,0,0"
+                HeaderBackground="#FF333333"
+                HeaderForeground="#FF888888"
+                DropDownBackground="#FF333333"
+                TabBackground="#FF333333"
+                TabForeground="#FFf2f5f4"
+                AdvancedTabHeader="Color Picker"
+                StandardTabHeader="Default Colors"
+                StandardColorsHeader="Default Colors"
+                SelectedColor="{Binding SelectedColor, ElementName=uctrl}">
+        </xctk:ColorPicker>
+    </Grid>
+</UserControl>

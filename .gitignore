@@ -1,0 +1,13 @@
+/packages/*
+/ShapeDatasetGeneratorWPF/bin/*
+/ShapeDatasetGeneratorWPF/obj/*
+*.suo
+.vs/ShapeDatasetGeneratorWPF/v16/.suo
+*.psd
+*.svg
+/icon.ico
+/icon.png
+/icon_64x64.png
+/icon_128x128.png
+/icon_256x256.png
+/icon.xaml

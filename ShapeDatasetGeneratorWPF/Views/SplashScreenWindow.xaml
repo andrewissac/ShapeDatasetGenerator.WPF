@@ -1,0 +1,59 @@
+﻿<Window x:Class="ShapeDatasetGeneratorWPF.Views.SplashScreenWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:usrctrl="clr-namespace:ShapeDatasetGeneratorWPF.UserControls"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ShapeDatasetGeneratorWPF.Views"
+        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+        mc:Ignorable="d"
+        Title="SplashScreen"
+        ShowInTaskbar="False"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        UseLayoutRounding="True" 
+        Height="600" 
+        Width="800">
+    <Window.Resources>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="FontFamily" Value="Helvetica" />
+            <Setter Property="Foreground" Value="#FF888888" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontWeight" Value="Normal" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+    </Window.Resources>
+    <Grid Background="#FF161618">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <usrctrl:AppIcon Grid.Row="1" Width="100" Height="100"/>
+        <usrctrl:BusySpinner Grid.Row="1" SpinnerColor="#FFee4d2e" DotSize="10" Margin="8,7,0,0"
+                             Width="220" Height="220" HorizontalAlignment="Center" />
+        <Grid Grid.Row="2" Margin="0,10,0,0" Height="24">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock HorizontalAlignment="Center" Grid.Column="1">
+                <Run Name="LoadingTextBlock" Text="Loading"/>
+                </TextBlock>
+                <Viewbox Width="100" Grid.Column="2" HorizontalAlignment="Left" Margin="5,3,0,0">
+                    <mah:MetroProgressBar 
+                        Width="200"
+                        Grid.Column="2"
+                        IsIndeterminate="True" 
+                        Foreground="#FF888888"/>
+                </Viewbox>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
